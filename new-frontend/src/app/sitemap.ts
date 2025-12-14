@@ -85,11 +85,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/policies',
         '/documentation',
         '/payment-success',
+        '/flows',
+        '/forms-templates',
         '/flow-templates',
+        '/blogs',
     ].map((route) => ({
         url: `${BASE_URL}${route}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
+        changeFrequency: route === '' ? 'daily' as const : 'weekly' as const,
         priority: route === '' ? 1 : 0.8,
     }));
 

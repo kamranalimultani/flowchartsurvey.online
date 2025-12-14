@@ -661,6 +661,80 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Pricing Section - ADDED */}
+        <section id="pricing" className="py-32 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <Badge variant="outline" className="mb-4">
+                Pricing
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
+                Simple, Transparent Pricing
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Start for free, scale as you grow. No hidden fees or long-term contracts.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {pricingPlans.map((plan, i) => (
+                <Card
+                  key={i}
+                  className={`relative flex flex-col ${plan.popular
+                      ? "border-primary shadow-2xl scale-105 z-10"
+                      : "border-border hover:border-primary/50"
+                    } transition-all duration-300`}
+                >
+                  {plan.popular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 shadow-lg">
+                      <Star className="w-3 h-3 fill-current" />
+                      Most Popular
+                    </div>
+                  )}
+
+                  <CardHeader className="text-center pb-8">
+                    <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
+                    <div className="flex items-baseline justify-center gap-1">
+                      <span className="text-4xl font-black">{plan.price}</span>
+                      <span className="text-muted-foreground">{plan.period}</span>
+                    </div>
+                    <CardDescription className="mt-4 text-base">
+                      {plan.description}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="flex-1 flex flex-col">
+                    <ul className="space-y-4 mb-8 flex-1">
+                      {plan.features.map((feature, j) => (
+                        <li key={j} className="flex items-start gap-3 text-sm">
+                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                      {plan.notIncluded.map((feature, j) => (
+                        <li key={j} className="flex items-start gap-3 text-sm text-muted-foreground/50">
+                          <X className="w-5 h-5 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      variant={plan.popular ? "default" : "outline"}
+                      size="lg"
+                      className="w-full"
+                      onClick={() => router.push('/signup')}
+                    >
+                      {plan.cta}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Advanced Features Grid */}
         <section className="py-32">
           <div className="container mx-auto px-4">

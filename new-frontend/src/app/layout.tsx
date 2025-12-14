@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://flowchartsurvey.online";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Flow Survey | Visual Flowchart Survey Builder & Interactive Decision Trees",
     template: "%s | Flow Survey",
@@ -29,19 +32,53 @@ export const metadata: Metadata = {
     "logic forms",
     "survey flows",
     "data collection tool",
+    "surveyjs",
+    "conditional logic surveys",
+    "interactive decision trees"
   ],
+  applicationName: "Flow Survey",
+  authors: [{ name: "Flow Survey Team", url: BASE_URL }],
+  creator: "Flow Survey",
+  publisher: "Flow Survey",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://flowchartsurvey.online",
+    url: BASE_URL,
     title: "Flow Survey | Visual Flowchart Survey Builder",
-    description: "Build complex logic flows and interactive decision trees visually.",
+    description: "Build complex logic flows and interactive decision trees visually with our enterprise-grade builder.",
     siteName: "Flow Survey",
+    images: [
+      {
+        url: "/og-image.jpg", // Ensure you have an og-image.jpg in public folder or change this
+        width: 1200,
+        height: 630,
+        alt: "Flow Survey Platform Preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Flow Survey | Visual Flowchart Survey Builder",
     description: "Build complex logic flows and interactive decision trees visually.",
+    creator: "@flowchartsurvey", // Update if you have a handle
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
