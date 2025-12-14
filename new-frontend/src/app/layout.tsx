@@ -58,7 +58,18 @@ export default function RootLayout({
         </Script>       <Script src="/viewer.min.js" strategy="afterInteractive" />
         <Script src="https://checkout.razorpay.com/v1/checkout.js" />
         {/* Google Analytics */}
-
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-WX7RQ80C8G"></Script>
+        <Script
+          id="google-analytics-config" // Add an ID
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WX7RQ80C8G');
+      `,
+          }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>
